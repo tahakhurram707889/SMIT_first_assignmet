@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>SMIT | Admission Form</title>
+    <link rel="shortcut icon" href="../images/brand.png" type="image/x-icon"/>
+    <link rel="stylesheet" type="text/css" href="/stylesheets/style.css"/>
+    <link rel="stylesheet" type="text/css" href="/stylesheets/form.css"/>
+    <link rel="stylesheet" type="text/css" href="/stylesheets/home.css"/>
+
+
+    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/@phosphor-icons/web@2.1.1/src/regular/style.css"/>
+
+
+
+</head>
+<body>
+    <div class="main-container">
+        <header>
+            <div class="brand-info">
+                <img src="../images/brand.png" alt="logo" title="logo" loading="lazy"/>
+
+                <h2>SMIT</h2>
+            </div>
+            <div class="menu-area">
+                <input type="checkbox" name="" id="menu-toggle" hidden />
+                <label for="menu-toggle" class="menu-icon"><i class="ph ph-text-outdent"></i></label>
+                <label for="menu-toggle" id="overlay"></label>
+                <nav>
+                    <a href="/index.html" style="--i:1" class="navlink">Home</a>
+                </nav>
+            </div>
+        </header>
+
+        <section class="content active">
+            <div class="form-container">
+                <h2>Admission <span>Form</span></h2>
+                <p class="form-note">* Indicates required question</p>
+                <form id="admission-form" class="admission-form">
+                    <div class="form-group">
+                        <label for="name">Name *</label>
+                        <input type="text" id="name" name="name" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="father_name">Father's name *</label>
+                        <input type="text" id="father_name" name="father_name" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="whatsapp">Whatsapp num *</label>
+                        <input type="tel" id="whatsapp" name="whatsapp" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="education">Education *</label>
+                        <select id="education" name="education" required>
+                            <option value="">Select Education</option>
+                            <option value="matric">Matric</option>
+                            <option value="intermediate">Intermediate</option>
+                            <option value="graduate">Graduate</option>
+                            <option value="masters">Masters</option>
+                            <option value="other">Other</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="address">Address *</label>
+                        <textarea id="address" name="address" rows="3" required></textarea>
+                    </div>
+                    <div class="form-group">
+                        <label for="email">Email address *</label>
+                        <input type="email" id="email" name="email" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="cnic">CNIC or Form B Num *</label>
+                        <input type="text" id="cnic" name="cnic" required pattern="[0-9]{5}-[0-9]{7}-[0-9]{1}" title="Format: 12345-1234567-1">
+                    </div>
+                    <div class="form-group">
+                        <label for="dob">Date of birth *</label>
+                        <input type="date" id="dob" name="dob" required>
+                    </div>
+                    <button type="submit" class="btn submit-btn">Submit Application</button>
+                </form>
+            </div>
+        </section>
+    </div>
+
+    <script>
+        const toggle = document.getElementById('menu-toggle');
+        if (toggle) {
+            toggle.addEventListener('change', () => {
+                document.body.classList.toggle("no-scroll", toggle.checked);
+            });
+        }
+
+        const form = document.getElementById('admission-form');
+        if (form) {
+            form.addEventListener('submit', (e) => {
+                e.preventDefault();
+                if (form.checkValidity()) {
+                    alert('Admission form submitted successfully! Data logged to console.');
+                    console.log(Object.fromEntries(new FormData(form)));
+                    form.reset();
+                } else {
+                    alert('Please fill all required fields correctly.');
+                }
+            });
+        }
+    </script>
+</body>
+</html>
